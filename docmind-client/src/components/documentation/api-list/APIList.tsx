@@ -6,7 +6,7 @@ import './api-list.css';
 function APIList() {
     const apis = [{
         endpoint: '/store/{id}',
-        method: 'get',
+        method: 'GET',
         headers: {
             "content-type": "application/json"
         },
@@ -16,14 +16,50 @@ function APIList() {
     },
     {
         endpoint: '/store/{id}',
-        method: 'delete',
+        method: 'DELETE',
         headers: {
             "content-type": "application/json"
         },
         description: 'Deletes existing store from Database',
         params: {},
         reqBody: {}
+    },
+    {
+        endpoint: '/store',
+        method: 'POST',
+        headers: {
+            "content-type": "application/json"
+        },
+        description: 'Creates a store',
+        params: {},
+        reqBody: {}
+    },
+    {
+        endpoint: '/store/{id}',
+        method: 'PUT',
+        headers: {
+            "content-type": "application/json"
+        },
+        description: 'Updates existing store from Database',
+        params: {},
+        reqBody: {}
     }];
+
+    const getColor = (api: string) => {
+        switch (api) {
+            case 'GET':
+                return 'info';
+            case 'DELETE':
+                return 'error';
+            case 'POST':
+                return 'success';
+            case 'PUT':
+                return 'warning';
+            default:
+                return 'default';
+        }
+    };
+
     return (
         <div className={"api-list"}>
             {
@@ -43,9 +79,16 @@ function APIList() {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <div>
-                                <Chip label={api.method} color={"success"} />
-                                <Chip label={api.endpoint} />
+                            <div className="header">
+                                <Chip
+                                    label={api.method}
+                                    color={getColor(api.method)}
+                                    sx={
+                                        {
+                                            width: '100px',
+                                            marginRight: '2rem'
+                                        }} />
+                                <span>{api.endpoint}</span>
                             </div>
                         </AccordionSummary>
                         <AccordionDetails>
