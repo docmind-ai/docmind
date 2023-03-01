@@ -1,0 +1,4 @@
+.content {
+    z-index: 1;
+    width: -webkit-fill-available;
+}

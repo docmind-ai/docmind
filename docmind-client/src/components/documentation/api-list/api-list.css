@@ -1,0 +1,7 @@
+.api-list {
+    padding: 8px;
+    height: revert;
+    background-color: ghostwhite !important;
+    border-radius: 0px !important;
+    height: calc(100% - 73px);
+}
